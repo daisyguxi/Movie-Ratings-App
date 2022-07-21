@@ -1,5 +1,16 @@
 {% extends 'base.html' %} {% block title %}{{ user.email }} - Details{% endblock
 %} {% block body %}
 <h1>{{ user.email }}</h1>
-
+<ul>
+  {% for rating in user.ratings %}
+  <li>
+    {{ rating.movie.title }}:
+    <span class="rating_num_" {{rating.rating_id }}> {{ rating.score }} </span>
+    <form action="/update_rating/{{rating.rating_id}}" method="POST">
+      <input name="updated_score" type="number" />
+      <input type="Submit" />
+    </form>
+  </li>
+  {% endfor %}
+</ul>
 {% endblock %}

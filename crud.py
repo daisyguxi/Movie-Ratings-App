@@ -45,6 +45,16 @@ def get_users():
 def get_user_by_id(user_id):
     return User.query.get(user_id)
 
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
+    
+def update_rating(rating_id, new_score):
+    """ Update a rating given rating_id and the updated score. """
+    rating = Rating.query.get(rating_id)
+    rating.score = new_score
+
 
 
 if __name__ == "__main__":
